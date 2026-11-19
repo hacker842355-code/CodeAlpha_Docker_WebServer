@@ -1,0 +1,25 @@
+services:
+  web:
+    build: .
+    image: codealpha-webserver:1.0
+    container_name: codealpha-web
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    read_only: true              # immutable root filesystem
+    tmpfs:
+      - /tmp                     # nginx-unprivileged writes pid/cache here
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

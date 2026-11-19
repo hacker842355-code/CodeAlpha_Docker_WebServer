@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CodeAlpha · Dockerized Web Server</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>It works inside a container 🐳</h1>
+    <p>This page is served by <strong>nginx</strong> running in Docker (CodeAlpha DevOps · Task 4).</p>
+    <ul>
+      <li><a href="/healthz">/healthz</a> – health endpoint used by <code>HEALTHCHECK</code></li>
+      <li><a href="/missing">/missing</a> – custom 404 page</li>
+    </ul>
+    <p class="muted">Container hostname is visible in <code>docker logs</code> and <code>docker inspect</code>.</p>
+  </main>
+</body>
+</html>
